@@ -1,0 +1,36 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "runner",
+    "dev": "concurrently \"npm run dev:runner\" \"npm run dev:frontend\"",
+    "dev:runner": "runner --frontend-port 3000",
+    "dev:frontend": "cd frontend && cross-env BROWSER=none PORT=3000 npm start",
+    "lint": "eslint . --ignore-path .gitignore --ext .js",
+    "lint:fix": "eslint . --ignore-path .gitignore --ext .js --fix",
+    "postinstall": "cd frontend && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turnbasedgames/tictactoe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turnbasedgames/tictactoe/issues"
+  },
+  "homepage": "https://github.com/turnbasedgames/tictactoe#readme",
+  "dependencies": {
+    "@urturn/runner": "0.0.1-dev11",
+    "cross-env": "^7.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "concurrently": "^7.1.0",
+    "daisyui": "^2.22.0",
+    "postcss": "^8.4.16",
+    "tailwind": "^4.0.0"
+  }
+}
