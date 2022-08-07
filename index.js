@@ -130,7 +130,7 @@ function onPlayerJoin(player, boardGame) {
     state.playerOrder.push(newPlayer)
   }
 
-  return {};
+  return { state };
 }
 
 ////////////////////////////////
@@ -449,7 +449,7 @@ function onPlayerMove(player, move, boardGame) {
         return {}
       }
       if (gameMoveReveal(player, move, boardGame)) {
-        return {}
+        return { state }
       } else {
         return {}
       }
@@ -458,7 +458,7 @@ function onPlayerMove(player, move, boardGame) {
         return {}
       }
       gameMoveCard(player, move, boardGame)
-      return {}
+      return { state }
     default:
       return {}
   }
