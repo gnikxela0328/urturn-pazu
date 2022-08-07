@@ -27,6 +27,10 @@
     "cross-env": "^7.0.3"
   },
   "devDependencies": {
-    "concurrently": "^7.1.0"
+    "autoprefixer": "^10.4.8",
+    "concurrently": "^7.1.0",
+    "daisyui": "^2.22.0",
+    "postcss": "^8.4.16",
+    "tailwind": "^4.0.0"
   }
 }
