@@ -440,7 +440,7 @@ function onPlayerMove(player, move, boardGame) {
       //console.log('starting')
       if (gameMoveStart(state)) {
         //console.log(state)
-        return { joinable: false }
+        return { state, joinable: false }
       } else {
         return {}
       }
