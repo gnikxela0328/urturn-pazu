@@ -1,4 +1,4 @@
-# Alexander King - UrTurn Hackathon Submission
+# UrTurn Hackathon Submission - Alexander King 
 
 This was my submission for the first UrTurn Hackathon 
 
