@@ -198,6 +198,16 @@ function checkValid(id_one, id_two) {
  */
 
 
+
+/**
+ * 
+ * Used to start the game
+ * 
+ * Makes sure there is more than one player
+ * Shuffles initial player order
+ * Sets game turn to first player in the order
+ * Prints game log
+ */
 function gameMoveStart(state) {
 
   try {
@@ -220,6 +230,15 @@ function gameMoveStart(state) {
 
 }
 
+/***
+ * Used to reveal a space on the board
+ * 
+ * Retrieves player data
+ * Marks cell on board
+ * Prints to game log
+ * Apply card effects
+ * 
+ */
 function gameMoveReveal(player, move, boardGame) {
 
   const { state } = boardGame;
@@ -264,7 +283,7 @@ function gameMoveReveal(player, move, boardGame) {
     }
     
     state.playerOrder[state.playersMoved].score += score
-    //console.log('got plus')
+    console.log(score)
 
   } else if (cell.name === 'minus') {
     // add turn effects to score
@@ -281,7 +300,7 @@ function gameMoveReveal(player, move, boardGame) {
     }
     
     state.playerOrder[state.playersMoved].score += score
-    //console.log('got minus')
+    console.log(score)
   } else if (cell.name === 'empty') {
     // add turn effects to score
     // add score
