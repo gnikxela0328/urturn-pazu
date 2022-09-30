@@ -24,7 +24,7 @@ const Game = (props) => {
 
 
     return (
-        <div className='flex max-h-screen flex-col w-screen items-center pt-7'>
+        <div className='flex max-h-screen flex-col w-screen items-center bg-[#2a303c] pt-7'>
             {props.finished ?
                 <Finished winner={"ME"}/>
                 :
@@ -37,7 +37,7 @@ const Game = (props) => {
                                 <ScoreDisplay players={playerOrder} turnNumber={turnNumber} />
                             </div>
                             {playerData.cards &&
-                                <div className='flex h-full align-middle py-20'>
+                                <div className='flex h-full w-[50%] align-middle py-10'>
                                     {playerData.cards.map(card => {
                                         //console.log(playerData.cards)
                                         return (
