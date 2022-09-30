@@ -490,16 +490,25 @@ function onPlayerMove(player, move, boardGame) {
  * @param {BoardGame} currentGame
  * @returns {BoardGameResult}
  */
+
+// TODO
+/***
+ * Need to add condition which will finish game early and show that player has left
+ */
 function onPlayerQuit(player, boardGame) {
   //console.log("onPlayerQuit", player, boardGame)
 
-  const { state } = boardGame;
+  const { state, players } = boardGame;
 
   state.playerOrder = state.playerOrder.filter(user => {
     return user.id != player.id
   })
 
-  return {};
+
+  if (players.length < 2) {
+    return { finished: true };
+  }
+
 }
 
 module.exports = {
