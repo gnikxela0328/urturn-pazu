@@ -24,14 +24,14 @@ const Game = (props) => {
 
 
     return (
-        <div className='flex h-screen flex-col w-screen items-center pt-7'>
+        <div className='flex max-h-screen flex-col w-screen items-center pt-7'>
             {props.finished ?
                 <Finished winner={"ME"}/>
                 :
                 <>
                     {board &&
                         <div className='flex flex-col items-center w-screen'>
-                            <div className='flex w-screen'>
+                            <div className='flex w-screen h-full'>
                                 <PlayerDisplay players={playerOrder} messages={messages} currentPlayer={playerTurn} localPlayer={props.localPlayer} />
                                 <Board board={board} />
                                 <ScoreDisplay players={playerOrder} turnNumber={turnNumber} />

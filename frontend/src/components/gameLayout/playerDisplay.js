@@ -4,8 +4,8 @@ import Messages from "./messages";
 const PlayerDisplay = (props) => {
 
     return (
-        <div className='w-full flex flex-col items-center justify-between py-20'>
-            <div>
+        <div className='w-full flex flex-col items-start '>
+            <div className='pl-8 h-2/3 w-full'>
                 <p className="text-2xl mb-5">
                     Players
                 </p>
@@ -31,7 +31,7 @@ const PlayerDisplay = (props) => {
                     })}
                 </div>
             </div>
-            <div>
+            <div className='pl-8 h-1/3 w-full'>
                 <p className="text-2xl mb-5">
                     Game Log
                 </p>
