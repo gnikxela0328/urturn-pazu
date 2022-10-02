@@ -26,7 +26,7 @@ const Game = (props) => {
     return (
         <div className='flex max-h-screen flex-col w-screen items-center bg-[#2a303c] pt-7'>
             {props.finished ?
-                <Finished winner={"ME"}/>
+                <Finished winner={winner}/>
                 :
                 <>
                     {board &&
