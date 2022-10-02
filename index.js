@@ -258,8 +258,10 @@ function gameMoveReveal(player, move, boardGame) {
   let message = "\n- " + playerData.gameName + " has uncovered " + cell.name
   state.messages += message
 
+
+  // Parse card effects
   let effects = []
-  
+
   for (x in playerData.turnEffects) {
     if (playerData.turnEffects[x] === 'INVERT') {
       effects.push(-1)
@@ -268,9 +270,7 @@ function gameMoveReveal(player, move, boardGame) {
     }
   }
 
-  
-  //console.log('here')
-
+  // Apply card effects to move revealed
   if (cell.name === 'plus') {
     let score = 1
 
@@ -281,14 +281,10 @@ function gameMoveReveal(player, move, boardGame) {
         score = score * 2
       }
     }
-    
+
     state.playerOrder[state.playersMoved].score += score
     console.log(score)
-
   } else if (cell.name === 'minus') {
-    // add turn effects to score
-    // add score
-
     let score = -1
 
     for (x in effects) {
@@ -298,14 +294,14 @@ function gameMoveReveal(player, move, boardGame) {
         score = score * 2
       }
     }
-    
+
     state.playerOrder[state.playersMoved].score += score
+    console.log('got minus')
     console.log(score)
   } else if (cell.name === 'empty') {
-    // add turn effects to score
-    // add score
-    //console.log('got empty')
+    // nothing
   }
+
 
   // Move has been made
   state.playersMoved++
@@ -321,28 +317,31 @@ function gameMoveReveal(player, move, boardGame) {
     if (state.turnNumber === state.turnMax) {
       //let win = true
 
-      let winningScore = 0
+      // Calculate winning score
+      let winningScore = -999
       for (x in state.playerOrder) {
         if (state.playerOrder[x].score > winningScore) {
           winningScore = state.playerOrder[x].score
         }
       }
 
+      // Collect one or more winners
       for (x in state.playerOrder) {
         if (state.playerOrder[x].score === winningScore) {
-          state.winner.push(state.playerOrder[x].gameName)
+          state.winner.push({
+            "gameName": state.playerOrder[x].gameName,
+            "userName": state.playerOrder[x].username
+          })
         }
+        console.log(x)
       }
 
       state.messages += "\n- Game is finished!"
-      return { finished: true }
     } else {
-
-
       // reset moves
       state.playersMoved = 0;
 
-      // Get UrFirst cards
+      // Move UrFirst card players to front of order
       let firstQueue = []
       let elseQueue = []
 
@@ -362,13 +361,13 @@ function gameMoveReveal(player, move, boardGame) {
       //console.log(elseQueue)
 
       state.playerOrder = []
-      
+
       // fill new order
-      for (x in firstQueue){
+      for (x in firstQueue) {
         state.playerOrder.push(firstQueue[x])
       }
 
-      for (x in elseQueue){
+      for (x in elseQueue) {
         state.playerOrder.push(elseQueue[x])
       }
 
@@ -394,8 +393,6 @@ function gameMoveReveal(player, move, boardGame) {
 
       ////console.log(state.messages)
     }
-
-    ////console.log(state)
 
     return true
   } else {
@@ -468,6 +465,9 @@ function onPlayerMove(player, move, boardGame) {
         return {}
       }
       if (gameMoveReveal(player, move, boardGame)) {
+        if (state.winner.length !== 0) {
+          return { state, finished: true }
+        }
         return { state }
       } else {
         return {}
@@ -492,9 +492,6 @@ function onPlayerMove(player, move, boardGame) {
  */
 
 // TODO
-/***
- * Need to add condition which will finish game early and show that player has left
- */
 function onPlayerQuit(player, boardGame) {
   //console.log("onPlayerQuit", player, boardGame)
 
@@ -508,6 +505,8 @@ function onPlayerQuit(player, boardGame) {
   if (players.length < 2) {
     return { finished: true };
   }
+
+  return {}
 
 }
 
